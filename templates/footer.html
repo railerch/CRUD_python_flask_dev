@@ -1,0 +1,11 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        //********************************************************** INDEX
+        // Eliminar registro
+        $(".eliminar-btn").click(function () {
+            var ruta = "/eliminar/" + $(this).attr("data-empleado")
+            console.log(ruta)
+            $("#eliminar-confirmar-btn").attr("href", ruta)
+        })
+    })
+</script>

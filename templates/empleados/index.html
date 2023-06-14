@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% include 'head.html' %}
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="container">
+        <hr>
+        <h2> <i class="icon-th-list"></i> Empleados registrados</h2>
+        <hr style="border-top: 3px dotted #bbb;">
+        <table class="table table-striped align-middle text-center">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Foto</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for empleado in empleados %}
+                <tr>
+                    <td class="align-middle">{{ empleado[0] }}</td>
+                    <td class="align-middle"><img class="img-thumbnail" width="50" src="uploads/{{ empleado[3] }}"
+                            alt="Foto empleado"></td>
+                    <td class="align-middle">{{ empleado[1] }}</td>
+                    <td class="align-middle">{{ empleado[2] }}</td>
+                    <td class="align-middle">
+
+                        <a href="/editar/{{ empleado[0] }}" class="btn btn-primary">
+                            <i class="icon-edit"></i>
+                        </a>
+
+                        <button class="btn btn-danger eliminar-btn" type="button" data-toggle="modal" data-target="#eliminar" data-empleado="{{ empleado[0] }}">
+                            <i class="icon-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/crear">
+            <button class="btn btn-success" type="button">NUEVO REGISTRO</button>
+        </a>
+        <hr>
+    </div>
+
+    <div id="eliminar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="my-modal-title"> <i class="icon-trash"></i> Eliminar usuario</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Esta a punto de eliminar el empleado seleccionado, desea continuar?</p>
+                </div>
+                <div class="modal-footer">
+                    <a id="eliminar-confirmar-btn" class="btn btn-primary" href="">ACEPTAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% include 'head.html' %}
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="container">
+        
+        <!-- MENSAJE DE VALIDACION DE FORMULARIO -->
+        {% with mensajes = get_flashed_messages() %}
+
+        {% if mensajes %}
+        <div class="alert alert-danger" role="alert">
+            {% for msj in mensajes %}
+            {{ msj }}
+            {% endfor%}
+        </div>
+        {% endif%}
+
+        {% endwith %}
+        <!----------------------------------------------->
+
+        <hr>
+        <h2> <i class="icon-user-plus"></i> Nuevo empleado</h2>
+        <hr style="border-top: 3px dotted #bbb;">
+        <form method="post" action="/store" enctype="multipart/form-data">
+
+            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre completo">
+            <br>
+            <input id="correo" class="form-control" type="email" name="correo" placeholder="usuario@dominio.com">
+            <br>
+            <input id="foto" class="form-control" type="file" name="foto">
+            <br>
+            <a href="/" class="btn btn-secondary">CANCELAR</a>
+            <input id="enviar" class="btn btn-primary" type="submit" value="AGREGAR">
+
+        </form>
+        <hr>
+    </div>
+
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+
+</body>
+
+</html>

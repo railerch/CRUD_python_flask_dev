@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% include 'head.html' %}
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="container">
+        <hr>
+        <h2>Editar usuario</h2>
+        <hr style="border-top: 3px dotted #bbb;">
+
+        {% for dato in empleado %}
+        <form method="post" action="/update" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{ dato[0] }}">
+            <input type="hidden" name="imagenActual" value="{{ dato[3] }}">
+
+            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre completo"
+                value="{{ dato[1] }}">
+
+            <hr style="border: 0; margin-top: 10px">
+
+            <input id="correo" class="form-control" type="email" name="correo" placeholder="usuario@dominio.com"
+                value="{{ dato[2] }}">
+
+            <hr style="border: 0; margin-top: 10px">
+
+            <img class="img-thumbnail" width="50" src="{{ url_for('uploads', imagen=dato[3]) }}" alt="Foto empleado">
+            <span>Imagen actual</span>
+
+            <hr style="border: 0; margin-top: 10px">
+
+            <input id="foto" class="form-control" type="file" name="foto">
+            <small style="color: orange">Deje en blanco para usar la imagen actual</small>
+
+            <hr style="border: 0; margin-top: 10px">
+            
+            <a href="/" class="btn btn-secondary">CANCELAR</a>
+            <input id="actualizar" class="btn btn-primary" type="submit" value="ACTUALIZAR">
+        </form>
+        {% endfor %}
+        <hr>
+    </div>
+
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+
+</body>
+
+</html>
